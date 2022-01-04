@@ -15,7 +15,7 @@ function App() {
             <SearchPanel/>
             <AppFilter/>
         </div>
-        
+
         <EmployeesList/>
         <EmployeesAddForm/>
     </div>
