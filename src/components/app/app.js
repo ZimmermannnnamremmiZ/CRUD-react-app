@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import nextId from "react-id-generator";
 
 import AppInfo from '../app-info/app-info';
 import SearchPanel from '../search-panel/search-panel';
@@ -10,16 +11,14 @@ import './app.css';
 
 class App extends Component {
 
-
-
   constructor(props) {
     super(props);
     this.state = {
       data: [
-        {name: 'Lorem I.', salary: 1200, increase: false, id: 1},
-        {name: 'Bibop Y.', salary: 1000, increase: true, id: 2},
-        {name: 'Benn Z.', salary: 1400, increase: false, id: 3},
-        {name: 'Paul A.', salary: 1600, increase: false, id: 4},
+        {name: 'Lorem I.', salary: 1200, increase: false, id: nextId()},
+        {name: 'Bibop Y.', salary: 1000, increase: true, id: nextId()},
+        {name: 'Benn Z.', salary: 1400, increase: false, id: nextId()},
+        {name: 'Paul A.', salary: 1600, increase: false, id: nextId()},
       ]
     }
   }
@@ -30,6 +29,16 @@ class App extends Component {
     this.setState(({data}) => {
       return {
         data: data.filter(item => item.id !== id)
+      }
+    })
+  }
+
+  addEmployeer = (name, salary) => {
+    this.setState(({data}) => {
+      return {
+        data: data.concat({
+          name: name, salary: salary, increase: false, id: nextId()
+        })
       }
     })
   }
@@ -48,8 +57,11 @@ class App extends Component {
 
           <EmployeesList
               data={data}
-              onDelete={this.deleteItem}/>
-          <EmployeesAddForm/>
+              onDelete={this.deleteItem}
+              />
+          <EmployeesAddForm
+              onAdd={this.addEmployeer}
+          />
       </div>
     );
   }
