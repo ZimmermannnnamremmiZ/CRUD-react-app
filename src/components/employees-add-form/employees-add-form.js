@@ -24,7 +24,6 @@ class EmployeesAddForm extends Component {
         this.props.onAdd(this.state.name, this.state.salary)
     }
 
-
     render() {
         const {name, salary} = this.state;
 

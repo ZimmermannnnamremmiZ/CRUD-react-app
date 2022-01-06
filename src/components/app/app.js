@@ -15,15 +15,13 @@ class App extends Component {
     super(props);
     this.state = {
       data: [
-        {name: 'Lorem I.', salary: 1200, increase: false, id: nextId()},
-        {name: 'Bibop Y.', salary: 1000, increase: true, id: nextId()},
-        {name: 'Benn Z.', salary: 1400, increase: false, id: nextId()},
-        {name: 'Paul A.', salary: 1600, increase: false, id: nextId()},
+        {name: 'Lorem I.', salary: 1200, increase: false, rise: false, id: nextId()},
+        {name: 'Bibop Y.', salary: 1000, increase: true, rise: false, id: nextId()},
+        {name: 'Benn Z.', salary: 1400, increase: false, rise: false, id: nextId()},
+        {name: 'Paul A.', salary: 1600, increase: false, rise: false, id: nextId()},
       ]
     }
   }
-
-
 
   deleteItem = (id) => {
     this.setState(({data}) => {
@@ -37,18 +35,32 @@ class App extends Component {
     this.setState(({data}) => {
       return {
         data: data.concat({
-          name: name, salary: salary, increase: false, id: nextId()
+          name: name, salary: salary, increase: false, rise: false, id: nextId()
         })
       }
     })
   }
 
+  onToggleProps = (id, prop) => {
+    this.setState(({data}) => ({
+      data: data.map(item => {
+        if (item.id === id) {
+          return {...item, [prop]: !item[prop]}
+        }
+        return item
+      })
+    }))
+  }
+
   render () {
+    const allEmployeers =  this.state.data.length
+    const allIncreased = this.state.data.filter(item => item.increase).length
+
     const {data} = this.state
 
     return (
       <div className="app">
-          <AppInfo />
+          <AppInfo allEmployeers={allEmployeers} allIncreased={allIncreased}/>
 
           <div className="search-panel">
               <SearchPanel/>
@@ -58,6 +70,7 @@ class App extends Component {
           <EmployeesList
               data={data}
               onDelete={this.deleteItem}
+              onToggleProps={this.onToggleProps}
               />
           <EmployeesAddForm
               onAdd={this.addEmployeer}
