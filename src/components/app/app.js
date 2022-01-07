@@ -19,7 +19,8 @@ class App extends Component {
         {name: 'Bibop Y.', salary: 1000, increase: true, rise: false, id: nextId()},
         {name: 'Benn Z.', salary: 1400, increase: false, rise: false, id: nextId()},
         {name: 'Paul A.', salary: 1600, increase: false, rise: false, id: nextId()},
-      ]
+      ],
+      term: ''
     }
   }
 
@@ -52,23 +53,38 @@ class App extends Component {
     }))
   }
 
-  render () {
-    const allEmployeers =  this.state.data.length
-    const allIncreased = this.state.data.filter(item => item.increase).length
+  searcher = (items, term) => {
+    if (term.length === 0) {
+      return items;
+    }
 
-    const {data} = this.state
+    return items.filter(item => {
+      return item.name.indexOf(term) > -1
+    })
+  }
+
+  onUpdateSearch = (term) => {
+    this.setState({term});  // term: term
+  }
+
+  render () {
+    const {data, term} = this.state
+    const allEmployeers =  data.length
+    const allIncreased = data.filter(item => item.increase).length
+    const visibleData = this.searcher(data, term)
+
 
     return (
       <div className="app">
           <AppInfo allEmployeers={allEmployeers} allIncreased={allIncreased}/>
 
           <div className="search-panel">
-              <SearchPanel/>
+              <SearchPanel onUpdateSearch={this.onUpdateSearch}/>
               <AppFilter/>
           </div>
 
           <EmployeesList
-              data={data}
+              data={visibleData}
               onDelete={this.deleteItem}
               onToggleProps={this.onToggleProps}
               />
