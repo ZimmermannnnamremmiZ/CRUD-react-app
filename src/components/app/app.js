@@ -20,7 +20,8 @@ class App extends Component {
         {name: 'Benn Z.', salary: 1400, increase: false, rise: false, id: nextId()},
         {name: 'Paul A.', salary: 1600, increase: false, rise: false, id: nextId()},
       ],
-      term: ''
+      term: '',
+      filter: 'all'
     }
   }
 
@@ -67,12 +68,27 @@ class App extends Component {
     this.setState({term});  // term: term
   }
 
+
+  filter = (items, filter) => {
+    switch (filter) {
+            case 'rise':
+                    return items.filter(item => item.rise);
+            case '1000$+':
+                    return items.filter(item => item.salary > 1000)
+            default:
+                    return items
+    }
+  }
+
+  onFilterSelect = (filter) => {
+    this.setState({filter})
+  }
+
   render () {
-    const {data, term} = this.state
+    const {data, term, filter} = this.state
     const allEmployeers =  data.length
     const allIncreased = data.filter(item => item.increase).length
-    const visibleData = this.searcher(data, term)
-
+    const visibleData = this.filter(this.searcher(data, term), filter)
 
     return (
       <div className="app">
@@ -80,17 +96,14 @@ class App extends Component {
 
           <div className="search-panel">
               <SearchPanel onUpdateSearch={this.onUpdateSearch}/>
-              <AppFilter/>
+              <AppFilter filter={filter} onFilterSelect={this.onFilterSelect}/>
           </div>
 
           <EmployeesList
               data={visibleData}
               onDelete={this.deleteItem}
-              onToggleProps={this.onToggleProps}
-              />
-          <EmployeesAddForm
-              onAdd={this.addEmployeer}
-          />
+              onToggleProps={this.onToggleProps}/>
+          <EmployeesAddForm onAdd={this.addEmployeer}/>
       </div>
     );
   }
