@@ -6,3 +6,13 @@
     box-shadow: 15px 15px 30px rgba(0,0,0, .15);
     color: #fff;
 }
+
+.btn-group{
+    width: 100%;
+}
+
+@media screen and (max-width: 540px) {
+    .btn-group .btn {
+        font-size: 14px;
+    }
+}

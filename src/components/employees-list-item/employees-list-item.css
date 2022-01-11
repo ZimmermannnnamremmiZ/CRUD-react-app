@@ -58,8 +58,28 @@
 .list-group-item.increase .list-group-item-label, .list-group-item.increase .list-group-item-input {
     color: #e09f3e;
 }
-  
+
 .list-group-item.increase .btn-star {
     color: #aeaeae;
 }
-  
+
+
+@media screen and (max-width: 1024px) {
+
+    .list-group-item {
+        padding: 15px 2.5%;
+    }
+
+    .list-group-item span {
+        min-width: auto;
+        width: 60%
+    }
+
+    .list-group-item__buttons {
+        width: 15%
+    }
+
+    .list-group-item input {
+        width: 20%
+    }
+}
