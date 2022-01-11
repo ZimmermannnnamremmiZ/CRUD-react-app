@@ -5,3 +5,13 @@
     box-shadow: 15px 15px 30px rgba(0,0,0, .15);
     color: #fff;
 }
+
+@media screen and (max-width: 550px) {
+    .h1, h1 {
+        font-size: calc(1.075rem + 1.5vw);
+    }
+
+    .h2, h2 {
+        font-size: calc(1.025rem + .9vw);
+    }
+}

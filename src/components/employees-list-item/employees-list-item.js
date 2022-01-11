@@ -38,7 +38,7 @@ class EmployeesListItem extends Component {
                                    defaultValue={salary + "$"}
                                    onChange={this.onUpdateSalary}
                                 />
-                <div className='d-flex justify-content-center align-items-center'>
+                <div className='list-group-item__buttons d-flex justify-content-center align-items-center'>
                     <button type="button"
                         className="btn-cookie btn-sm "
                         onClick={onToggleProps}
