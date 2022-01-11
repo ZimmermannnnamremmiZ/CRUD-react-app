@@ -1,8 +1,25 @@
+import { Component } from 'react';
 import './employees-list-item.css';
 
-const EmployeesListItem = (props) => {
+class EmployeesListItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            salary: '',
+            id: ''
+        }
+    }
 
-        const {name, salary, onDelete, onToggleProps, increase, rise} = props;
+    onUpdateSalary = (el) => {
+        const salary = parseInt(el.target.value);
+        const id = this.props.id;
+        this.setState({salary, id}, () => this.props.onChangeSalary(this.state.id, this.state.salary));
+    }
+
+
+
+    render() {
+        const {name, salary, onDelete, onToggleProps, increase, rise} = this.props;
 
         let itemClassNames = "list-group-item d-flex justify-content-between"
 
@@ -17,7 +34,10 @@ const EmployeesListItem = (props) => {
         return (
             <li className={itemClassNames}>
                 <span className="list-group-item-label" onClick={onToggleProps} data-toggle="rise">{name}</span>
-                <input type="text" className="list-group-item-input" defaultValue={salary + "$"}/>
+                <input type="text" className="list-group-item-input"
+                                   defaultValue={salary + "$"}
+                                   onChange={this.onUpdateSalary}
+                                />
                 <div className='list-group-item__buttons d-flex justify-content-center align-items-center'>
                     <button type="button"
                         className="btn-cookie btn-sm "
@@ -35,6 +55,9 @@ const EmployeesListItem = (props) => {
                 </div>
             </li>
         )
+
 }
+}
+
 
 export default EmployeesListItem;
