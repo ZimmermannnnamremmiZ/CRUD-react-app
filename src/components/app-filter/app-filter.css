@@ -1,3 +1,33 @@
 .btn-group {
     margin-top: 20px;
 }
+
+@media screen and (max-width: 550px) {
+    .list-group-item span {
+        width: 55%;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .btn-group .btn {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .btn-group {
+        flex-direction: column;
+    }
+
+    .btn-group .btn {
+        border-radius: unset;
+        margin-bottom: 5px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .form-control, .add-form .btn, .btn-group .btn {
+        font-size: 0.7rem;
+    }
+}
