@@ -15,10 +15,13 @@
 }
 
 .list-group-item input {
-    line-height: 35px;
     font-size: 20px;
     text-align: center;
     border: 0;
+}
+
+.list-group-item__buttons {
+    width: 120px;
 }
 
 .list-group-item button {
@@ -65,7 +68,6 @@
 
 
 @media screen and (max-width: 1024px) {
-
     .list-group-item {
         padding: 15px 2.5%;
     }
@@ -75,11 +77,34 @@
         width: 60%
     }
 
-    .list-group-item__buttons {
-        width: 15%
-    }
-
     .list-group-item input {
         width: 20%
     }
+}
+
+
+@media screen and (max-width: 550px) {
+    .list-group-item span {
+        width: 55%;
+    }
+}
+
+@media screen and (max-width: 465px) {
+    .list-group-item button {
+        margin: 1px;
+    }
+
+    .list-group-item span {
+        width: 50%;
+    }
+    .list-group-item input {
+        width: 30%;
+    }
+    .list-group-item span, .list-group-item input {
+        font-size: 1rem;
+    }
+
+
+
+
 }

@@ -15,3 +15,21 @@
         font-size: calc(1.025rem + .9vw);
     }
 }
+
+@media screen and (max-width: 465px) {
+    .h1, h1 {
+        font-size: calc(0.9rem + 1.5vw);
+    }
+    .h2, h2 {
+        font-size: calc(0.8rem + .9vw);
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .h1, h1 {
+        font-size: calc(0.7rem + 1.5vw);
+    }
+    .h2, h2 {
+        font-size: calc(0.65rem + .9vw);
+    }
+}
